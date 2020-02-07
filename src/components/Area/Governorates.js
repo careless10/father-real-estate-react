@@ -1,21 +1,21 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { getAllTypes } from "../utilities/apis/sidebar";
+import { getGovernorates } from "../../utilities/apis/realEstate";
 
-const Types = props => {
-  const [loading, setLoading] = useState(true);
-  const [types, setTypes] = useState([]);
+const Governorates = props => {
+  const [loading, setLoading] = useState(false);
+  const [governorates, setGovernorates] = useState([]);
 
   useEffect(() => {
     setLoading(true);
-    getAllTypes().then(res => {
+    getGovernorates(props.selectedType).then(res => {
       setLoading(false);
-      setTypes(res.data.data);
+      setGovernorates(res.data);
     });
-  }, []);
+  }, [props.selectedType]);
 
   function changed(e) {
-    props.selectType(e);
+    props.selectGovernorate(e);
   }
 
   return (
@@ -27,13 +27,13 @@ const Types = props => {
         isLoading={loading}
         isRtl={true}
         isSearchable={true}
-        name="type"
+        name="governorate"
         getOptionLabel={option => option.name}
         getOptionValue={option => option}
-        options={types}
+        options={governorates}
       />
     </div>
   );
 };
 
-export default Types;
+export default Governorates;

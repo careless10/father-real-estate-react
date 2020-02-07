@@ -1,21 +1,26 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { getAllTypes } from "../utilities/apis/sidebar";
+import { getAreas } from "../../utilities/apis/realEstate";
 
-const Types = props => {
+const Areas = props => {
   const [loading, setLoading] = useState(true);
-  const [types, setTypes] = useState([]);
+  const [areas, setAreas] = useState([]);
 
   useEffect(() => {
+    console.log(props.allAreas);
     setLoading(true);
-    getAllTypes().then(res => {
+    getAreas(
+      props.selectedType,
+      props.selectedGovernorate,
+      props.allAreas
+    ).then(res => {
       setLoading(false);
-      setTypes(res.data.data);
+      setAreas(res.data);
     });
-  }, []);
+  }, [props.selectedGovernorate, props.selectedType]);
 
   function changed(e) {
-    props.selectType(e);
+    props.selectArea(e);
   }
 
   return (
@@ -27,13 +32,18 @@ const Types = props => {
         isLoading={loading}
         isRtl={true}
         isSearchable={true}
-        name="type"
+        name="area"
         getOptionLabel={option => option.name}
         getOptionValue={option => option}
-        options={types}
+        options={areas}
       />
     </div>
   );
 };
 
-export default Types;
+Areas.defaultProps = {
+  selectedType: { id: 1 },
+  selectedGovernorate: { id: 1 }
+};
+
+export default Areas;

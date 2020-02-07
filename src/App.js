@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import ReactDOM from "react-dom";
+import Sidebar from "./components/Sidebar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Browser from "./containers/Browser";
+import AddBuilding from "./components/Building/AddBuilding";
+import Header from "./components/Header/Header";
 
-function App() {
+function App(props) {
+  const [type, setType] = useState({ id: 1 });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <Header />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-2">
+            <Sidebar setType={setType} />
+          </div>
+          <div className="col-md-10">
+            <AddBuilding />
+            <Switch>
+              <Route path="/">
+                <Browser type={type} />
+              </Route>
+            </Switch>
+          </div>
+        </div>
+      </div>
+    </Router>
   );
 }
 
 export default App;
+
+if (document.getElementById("root")) {
+  ReactDOM.render(<App />, document.getElementById("root"));
+}
