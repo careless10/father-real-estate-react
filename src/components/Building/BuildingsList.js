@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getRealEstate } from "../../utilities/apis/realEstate";
+import { getRealEstate } from "../../base/utilities/apis/realEstate";
 
 const BuildingsList = ({
   selectedType,

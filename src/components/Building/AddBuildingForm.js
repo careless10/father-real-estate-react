@@ -3,7 +3,7 @@ import Governorates from "../Area/Governorates";
 import Areas from "../Area/Areas";
 import Order from "../Order";
 import Types from "../Types";
-import { addBuilding } from "../../utilities/apis/realEstate";
+import { addBuilding } from "../../base/utilities/apis/realEstate";
 
 const AddBuildingForm = props => {
   const [type, setType] = useState({ id: 1 });

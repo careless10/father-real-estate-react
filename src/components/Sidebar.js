@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { getAllTypes } from "../utilities/apis/sidebar";
+import { getAllTypes } from "../base/utilities/apis/sidebar";
 import styled from "styled-components";
 
 const Sidebar = props => {

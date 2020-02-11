@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { getAreas } from "../../utilities/apis/realEstate";
+import { getAreas } from "../../base/utilities/apis/realEstate";
 
 const Areas = props => {
   const [loading, setLoading] = useState(true);

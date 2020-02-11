@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { getAllTypes } from "../utilities/apis/sidebar";
+import { getAllTypes } from "../base/utilities/apis/sidebar";
 
 const Types = props => {
   const [loading, setLoading] = useState(true);
