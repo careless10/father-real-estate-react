@@ -3,6 +3,7 @@ import Governorates from "../components/Area/Governorates";
 import Areas from "../components/Area/Areas";
 import BuildingsList from "../components/Building/BuildingsList";
 import Order from "../components/Order";
+import AddBuilding from "../components/Building/AddBuilding";
 
 const Browser = props => {
   const [selectedGovernorate, setSelectedGovernorate] = useState({ id: 1 });
@@ -10,6 +11,7 @@ const Browser = props => {
   const [selectedArea, setSelectedArea] = useState({ id: 1 });
   return (
     <>
+      <AddBuilding />
       <div className="card">
         <div className="card-header">باحث العقارات</div>
 
