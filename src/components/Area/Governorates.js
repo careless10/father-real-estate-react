@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
-import { getGovernorates } from "../../base/utilities/apis/realEstate";
+import { getGovernorates } from "../../base/utilities/apis/browser";
 
 const Governorates = props => {
   const [loading, setLoading] = useState(false);

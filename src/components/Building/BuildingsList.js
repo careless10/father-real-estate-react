@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { getRealEstate } from "../../base/utilities/apis/realEstate";
+import { getRealEstate } from "../../base/utilities/apis/browser";
+import { connect } from "react-redux";
+import * as actions from "../../base/browser/action";
 
 const BuildingsList = ({
   selectedType,
@@ -7,12 +9,10 @@ const BuildingsList = ({
   selectedOrder,
   ...props
 }) => {
-  const [buildings, setBuildings] = useState([]);
-
   useEffect(() => {
-    getRealEstate(selectedType, selectedOrder, selectedArea).then(res =>
-      setBuildings(res.data)
-    );
+    getRealEstate(selectedType, selectedOrder, selectedArea).then(res => {
+      props.setBuildings(res);
+    });
   }, [selectedArea, selectedType, selectedOrder]);
 
   return (
@@ -29,8 +29,8 @@ const BuildingsList = ({
         </tr>
       </thead>
       <tbody>
-        {buildings.length > 0 &&
-          buildings.map(el => (
+        {props.browser.buildings.length > 0 &&
+          props.browser.buildings.map(el => (
             <tr key={el.id}>
               <th scope="row">{el.block}</th>
               <td>{el.building_no}</td>
@@ -52,4 +52,12 @@ BuildingsList.defaultProps = {
   selectedOrder: { id: 1 }
 };
 
-export default BuildingsList;
+const mapStateToProps = state => ({
+  browser: state.browser
+});
+
+const mapDispatchToProps = dispatch => ({
+  setBuildings: buildings => dispatch(actions.setBuildings(buildings))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(BuildingsList);

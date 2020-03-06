@@ -11,12 +11,12 @@ function App(props) {
   return (
     <Provider store={store}>
       <Router>
+        <Header />
         <Switch>
           <Route path="/">
             <PrivateRoute component={Browser} />
           </Route>
         </Switch>
-        <Header />
       </Router>
     </Provider>
   );

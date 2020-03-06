@@ -18,6 +18,12 @@ const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   />
 );
 
+PrivateRoute.defaultProps = {
+  auth: {
+    user: null
+  }
+};
+
 const mapStateToProps = state => ({
   auth: state.auth
 });

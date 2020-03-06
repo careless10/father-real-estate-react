@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Modal from "../../components/Modal/Modal";
 import { Formik, Form, Field } from "formik";
+import { connect } from "react-redux";
+import * as actions from "../../base/auth/action";
 
-const Login = () => {
+const Login = props => {
   const Button = props => (
     <a {...props} className="nav-link">
       دخول
@@ -10,13 +12,13 @@ const Login = () => {
   );
 
   function submit(values) {
-    console.log(submit);
+    props.tryLogin(values);
   }
 
   return (
     <div>
       <Modal Button={Button}>
-        <Formik initialValues={{ email: "", password: "" }}>
+        <Formik onSubmit={submit} initialValues={{ email: "", password: "" }}>
           <Form>
             <div className="form-group">
               <label htmlFor="firstName">البريد الإلكتروني</label>
@@ -44,4 +46,12 @@ const Login = () => {
   );
 };
 
-export default Login;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+const mapDispatchToProps = dispatch => ({
+  tryLogin: ({ email, password }) => dispatch(actions.tryLogin(email, password))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

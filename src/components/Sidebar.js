@@ -1,14 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { getAllTypes } from "../base/utilities/apis/sidebar";
 import styled from "styled-components";
+import { connect } from "react-redux";
+import * as actions from "../base/browser/action";
 
 const Sidebar = props => {
   const [selected, setSelected] = useState(1);
-  const [list, setList] = useState(null);
 
   useEffect(() => {
     getAllTypes().then(res => {
-      setList(res.data.data);
+      console.log(res);
+      props.setList(res.data);
       props.setType(res.data[0]);
     });
   }, []);
@@ -20,8 +22,8 @@ const Sidebar = props => {
 
   return (
     <Container className="list-group">
-      {list &&
-        list.map(el => (
+      {props.browser.list.length > 0 &&
+        props.browser.list.map(el => (
           <button
             key={el.id}
             onClick={() => selectType(el)}
@@ -51,4 +53,13 @@ const Container = styled.div`
   }
 `;
 
-export default Sidebar;
+const mapStateToProps = state => ({
+  browser: state.browser
+});
+
+const mapDispatchToProps = dispatch => ({
+  setType: type => dispatch(actions.setType(type)),
+  setList: list => dispatch(actions.setList(list))
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Sidebar);
