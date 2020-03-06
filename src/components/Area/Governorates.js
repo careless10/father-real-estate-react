@@ -10,7 +10,7 @@ const Governorates = props => {
     setLoading(true);
     getGovernorates(props.selectedType).then(res => {
       setLoading(false);
-      setGovernorates(res.data);
+      setGovernorates(res);
     });
   }, [props.selectedType]);
 

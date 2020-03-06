@@ -7,7 +7,6 @@ const Areas = props => {
   const [areas, setAreas] = useState([]);
 
   useEffect(() => {
-    console.log(props.allAreas);
     setLoading(true);
     getAreas(
       props.selectedType,
@@ -15,7 +14,7 @@ const Areas = props => {
       props.allAreas
     ).then(res => {
       setLoading(false);
-      setAreas(res.data);
+      setAreas(res);
     });
   }, [props.selectedGovernorate, props.selectedType]);
 

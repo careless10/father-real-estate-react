@@ -9,7 +9,6 @@ const Sidebar = props => {
 
   useEffect(() => {
     getAllTypes().then(res => {
-      console.log(res);
       props.setList(res.data);
       props.setType(res.data[0]);
     });

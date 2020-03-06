@@ -1,20 +1,22 @@
 import * as actionTypes from "../store/actionTypes";
 
 const initialState = {
-  type: null,
+  type: { id: 1 },
   list: [],
-  buildings: []
+  buildings: [],
+  order: { value: "sell" },
+  area: { id: 1 },
+  governorate: { id: 1 }
 };
 
 export default (state = initialState, { type, payload }) => {
   switch (type) {
     case actionTypes.SET_LIST:
-      return { ...state, ...payload };
-
     case actionTypes.SET_TYPE:
-      return { ...state, ...payload };
-
     case actionTypes.SET_BUILDINGS:
+    case actionTypes.SET_ORDER:
+    case actionTypes.SET_GOVERNORATE:
+    case actionTypes.SET_AREA:
       return { ...state, ...payload };
 
     default:
