@@ -10,7 +10,7 @@ const Types = props => {
     setLoading(true);
     getAllTypes().then(res => {
       setLoading(false);
-      setTypes(res.data.data);
+      setTypes(res.data);
     });
   }, []);
 

@@ -1,47 +1,19 @@
 import React from "react";
 import styled from "styled-components";
 import AddBuildingForm from "./AddBuildingForm";
+import Modal from "../Modal/Modal";
 
 const AddBuilding = () => {
+  const modalButton = props => (
+    <button type="button" className="btn btn-primary" {...props}>
+      إضافة عقار
+    </button>
+  );
   return (
     <Container>
-      <button
-        type="button"
-        className="btn btn-primary"
-        data-toggle="modal"
-        data-target="#exampleModal"
-      >
-        إضافة عقار
-      </button>
-      <div
-        className="modal fade"
-        id="exampleModal"
-        tabIndex="-1"
-        role="dialog"
-        aria-labelledby="exampleModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h5 className="modal-title" id="exampleModalLabel">
-                نموذج العقار
-              </h5>
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div className="modal-body">
-              <AddBuildingForm />
-            </div>
-          </div>
-        </div>
-      </div>
+      <Modal Button={modalButton}>
+        <AddBuildingForm />
+      </Modal>
     </Container>
   );
 };

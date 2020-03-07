@@ -4,6 +4,7 @@ import Areas from "../Area/Areas";
 import Order from "../Order";
 import Types from "../Types";
 import { addBuilding } from "../../base/utilities/apis/browser";
+import styled from "styled-components";
 
 const AddBuildingForm = props => {
   const [type, setType] = useState({ id: 1 });
@@ -27,7 +28,7 @@ const AddBuildingForm = props => {
     }
   }
   return (
-    <div>
+    <Div>
       <form onSubmit={submit}>
         <div className="form-group col-md-12">
           <Types selectType={setType} />
@@ -109,8 +110,12 @@ const AddBuildingForm = props => {
           </button>
         </div>
       </form>
-    </div>
+    </Div>
   );
 };
+
+const Div = styled.div`
+  width: 500px;
+`;
 
 export default AddBuildingForm;
